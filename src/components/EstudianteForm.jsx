@@ -81,7 +81,9 @@ export  const EstudianteForm = () => {
       </select>
       <br />
       <button type="submit">Registrar Estudiante</button>
+      <button onClick={() => window.location.href = "/dashboard"}>Volver al Dashboard</button>
     </form>
+    
   );
 };
 

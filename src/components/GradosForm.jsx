@@ -36,6 +36,8 @@ export const GradosForm = () => {
       />
       <br />
         <button type="submit">Registrar Grado</button>
+        <br />
+        <button onClick={() => window.location.href = "/dashboard"}>Volver al Dashboard</button>
     </form>
   );
 }

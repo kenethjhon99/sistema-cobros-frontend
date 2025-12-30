@@ -40,6 +40,7 @@ export const EstudiantesList = () => {
           </li>
         ))}
       </ul>
+      <button onClick={() => window.location.href = "/dashboard"}>Volver al Dashboard</button>
     </div>
   );
 };

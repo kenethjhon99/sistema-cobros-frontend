@@ -61,6 +61,7 @@ export const EstudianteCuotas = () => {
           </option>
         ))}
       </select>
+      <button onClick={() => window.location.href = "/dashboard"}>Volver al Dashboard</button>
 
       {cuotas.length > 0 && (
         <table border="1" style={{ marginTop: "20px" }}>
@@ -117,6 +118,7 @@ export const EstudianteCuotas = () => {
       <button onClick={pagarCuota}>Confirmar Pago</button>
       <button onClick={() => setCuotaSeleccionada(null)}>Cancelar</button>
     </div>
+    <button onClick={() => window.location.href = "/dashboard"}>Volver al Dashboard</button>
   </div>
 )}
 

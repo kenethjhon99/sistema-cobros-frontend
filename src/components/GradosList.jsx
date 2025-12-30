@@ -21,6 +21,7 @@ export const GradosList = () => {
           </li>
         ))}
       </ul>
+      <button onClick={() => window.location.href = "/dashboard"}>Volver al Dashboard</button>
     </div>
   );
 }
