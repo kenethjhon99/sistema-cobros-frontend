@@ -1,5 +1,6 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import {  Routes, Route, Navigate } from "react-router-dom";
 import PrivateRoute from "./utils/PrivateRoute";
+import MainLayout from "./Layouts/MainLayout";
 
 import Login from "./pages/Login";
 import GradosList from "./components/GradosList";
@@ -11,17 +12,9 @@ import Dashboard from "./pages/Dashboard";
 
 function App() {
   return (
-    <BrowserRouter>
+    
       <Routes>
-        <Route
-          path="/"
-          element={
-            <Navigate
-              to="/login"
-              replace
-            />
-          }
-        />
+        
         {/* Rutas publicas */}
         <Route
           path="/login"
@@ -29,55 +22,37 @@ function App() {
         />
         {/* Rutas privadas */}
         <Route
-          path="/dashboard"
           element={
             <PrivateRoute>
-              <Dashboard />
+              <MainLayout />
             </PrivateRoute>
           }
-        />
+         >
+          <Route
+            path="/dashboard"
+            element={<Dashboard />} />
+            <Route
+            path="/estudiantes-list"
+            element={<EstudiantesList />} />
+          <Route
+            path="/estudiante-form"
+            element={<EstudianteForm />} />
+          <Route
+            path="/estudiante-cuotas"
+            element={<EstudianteCuotas />} />
+          <Route
+            path="/grados-list"
+            element={<GradosList />} />
+          <Route
+            path="/grados-form"
+            element={<GradosForm />} />
+        </Route>
+        {/* redireccionar a login si la ruta no existe */}
         <Route
-          path="/estudiante-form"
-          element={
-            <PrivateRoute>
-              <EstudianteForm />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/grados-list"
-          element={
-            <PrivateRoute>
-              <GradosList />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/grados-form"
-          element={
-            <PrivateRoute>
-              <GradosForm />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/estudiantes-list"
-          element={
-            <PrivateRoute>
-              <EstudiantesList />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/estudiante-cuotas"
-          element={
-            <PrivateRoute>
-              <EstudianteCuotas />
-            </PrivateRoute>
-          }
+          path="*"
+          element={<Navigate to="/login" replace />}
         />
       </Routes>
-    </BrowserRouter>
   );
 }
 

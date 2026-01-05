@@ -2,6 +2,15 @@ import { useState } from "react";
 import { api } from "../api/axios";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import {
+  Button,
+  TextField,
+  Container,
+  Typography,
+  Box,
+  Alert,
+  Paper,
+} from "@mui/material";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -25,30 +34,65 @@ const Login = () => {
 
   return (
     <div>
-      <h2>Iniciar Sesión</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Usuario:</label>
-          <input
-            placeholder="Usuario"
-            type="text"
-            value={usuario}
-            onChange={(e) => setUsuario(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Contraseña:</label>
-          <input
-            placeholder="Password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Iniciar Sesión</button>
-      </form>
+      <Container maxWidth="full">
+        <Box
+          sx={{
+            minHeight: "100vh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Paper
+            elevation={4}
+            sx={{ mt: 8, p: 4 }}
+          >
+            <Typography
+              variant="h5"
+              align="center"
+              gutterBottom
+            >
+              Iniciar Sesión
+            </Typography>
+
+            <TextField
+              label="Usuario"
+              fullWidth
+              margin="normal"
+              value={usuario}
+              onChange={(e) => setUsuario(e.target.value)}
+            />
+
+            <TextField
+              label="Contraseña"
+              type="password"
+              fullWidth
+              margin="normal"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+
+            <Button
+              type="submit"
+              variant="contained"
+              fullWidth
+              sx={{ mt: 2 }}
+              onClick={handleSubmit }
+
+            >
+              Entrar
+            </Button>
+          </Paper>
+        </Box>
+        {error && (
+          <Alert
+            severity="error"
+            sx={{ mt: 2 }}
+          >
+            {error}
+          </Alert>
+        )}
+      </Container>
     </div>
   );
 };

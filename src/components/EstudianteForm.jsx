@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { api } from "../api/axios";
 
-export  const EstudianteForm = () => {
+export const EstudianteForm = () => {
   const [form, setForm] = useState({
     cui: "",
     primer_nombre: "",
@@ -12,13 +12,14 @@ export  const EstudianteForm = () => {
   });
   //recorrer grados para seleccionar el grado
   const [grados, setGrados] = useState([]);
-    useEffect(() => {
+  useEffect(() => {
     api
       .get("/grados")
-      .then((response) => setGrados(Array.isArray(response.data) ? response.data : []))
+      .then((response) =>
+        setGrados(Array.isArray(response.data) ? response.data : [])
+      )
       .catch((error) => console.error("Error fetching grados:", error));
   }, []);
-
 
   const handlSubmit = async (e) => {
     e.preventDefault();
@@ -32,58 +33,68 @@ export  const EstudianteForm = () => {
     }
   };
   return (
-    <form onSubmit={handlSubmit}>
+    <div>
+      <form onSubmit={handlSubmit}>
         <h2>Registrar Estudiante</h2>
-      <input
-        type="text"
-        placeholder="CUI"
-        value={form.cui}
-        onChange={(e) => setForm({ ...form, cui: e.target.value })}
-      />
-      <br />
-      <input
-        type="text"
-        placeholder="Primer Nombre"
-        value={form.primer_nombre}
-        onChange={(e) => setForm({ ...form, primer_nombre: e.target.value })}
-      />
-      <br />
-      <input
-        type="text"
-        placeholder="Segundo Nombre"
-        value={form.segundo_nombre}
-        onChange={(e) => setForm({ ...form, segundo_nombre: e.target.value })}
-      />
-      <br />
-      <input
-        type="text"
-        placeholder="Primer Apellido"
-        value={form.primer_apellido}
-        onChange={(e) => setForm({ ...form, primer_apellido: e.target.value })}
-      />
-      <br />
-      <input
-        type="text"
-        placeholder="Segundo Apellido"
-        value={form.segundo_apellido}
-        onChange={(e) => setForm({ ...form, segundo_apellido: e.target.value })}
-      />
-      <br />
-      <select
-        value={form.grado_id}
-        onChange={(e) => setForm({ ...form, grado_id: e.target.value })}
-      >
-        {grados.map((grado) => (
-          <option key={grado.id} value={grado.id}>
-            {grado.nombre} - {grado.nivel}
-          </option>
-        ))}
-      </select>
-      <br />
-      <button type="submit">Registrar Estudiante</button>
-      <button onClick={() => window.location.href = "/dashboard"}>Volver al Dashboard</button>
-    </form>
-    
+        <input
+          type="text"
+          placeholder="CUI"
+          value={form.cui}
+          onChange={(e) => setForm({ ...form, cui: e.target.value })}
+        />
+        <br />
+        <input
+          type="text"
+          placeholder="Primer Nombre"
+          value={form.primer_nombre}
+          onChange={(e) => setForm({ ...form, primer_nombre: e.target.value })}
+        />
+        <br />
+        <input
+          type="text"
+          placeholder="Segundo Nombre"
+          value={form.segundo_nombre}
+          onChange={(e) => setForm({ ...form, segundo_nombre: e.target.value })}
+        />
+        <br />
+        <input
+          type="text"
+          placeholder="Primer Apellido"
+          value={form.primer_apellido}
+          onChange={(e) =>
+            setForm({ ...form, primer_apellido: e.target.value })
+          }
+        />
+        <br />
+        <input
+          type="text"
+          placeholder="Segundo Apellido"
+          value={form.segundo_apellido}
+          onChange={(e) =>
+            setForm({ ...form, segundo_apellido: e.target.value })
+          }
+        />
+        <br />
+        <select
+          value={form.grado_id}
+          onChange={(e) => setForm({ ...form, grado_id: e.target.value })}
+        >
+          {grados.map((grado) => (
+            <option
+              key={grado.id}
+              value={grado.id}
+            >
+              {grado.nombre} - {grado.nivel}
+            </option>
+          ))}
+        </select>
+        <br />
+        <button type="submit">Registrar Estudiante</button>
+      </form>
+      <button onClick={() => (window.location.href = "/dashboard")}>
+        Volver al Dashboard
+      </button>
+    </div>
   );
 };
 
