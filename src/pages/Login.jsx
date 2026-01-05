@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { api } from "../api/axios";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import {
   Button,
@@ -21,7 +20,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await api.post("http://localhost:3000/api/auth/login", {
+      const response = await api.post("/auth/login", {
         usuario,
         password,
       });
