@@ -9,6 +9,7 @@ import EstudiantesList from "./components/EstudiantesList";
 import GradosForm from "./components/GradosForm";
 import EstudianteCuotas from "./components/EstudianteCuota";
 import Dashboard from "./pages/Dashboard";
+import AsistenciaDashboard from "./pages/AsistenciaDashboard";
 
 function App() {
   return (
@@ -46,6 +47,9 @@ function App() {
           <Route
             path="/grados-form"
             element={<GradosForm />} />
+          <Route
+            path="/asistencia"
+            element={<AsistenciaDashboard />} />
         </Route>
         {/* redireccionar a login si la ruta no existe */}
         <Route

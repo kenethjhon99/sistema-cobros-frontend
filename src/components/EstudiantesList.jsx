@@ -24,7 +24,6 @@ export const EstudiantesList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [estudiantes, setEstudiantes] = useState([]);
-  const [grados, setGrados] = useState([]);
 
   const navigate = useNavigate();
 

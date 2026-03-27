@@ -18,6 +18,7 @@ export default function Sidebar({ drawerWidth }) {
     { text: "Registrar Estudiante", path: "/estudiante-form" },
     { text: "Cuotas", path: "/estudiante-cuotas" },
     { text: "Grados", path: "/grados-list" },
+    { text: "Asistencia", path: "/asistencia" },
   ];
 
   return (

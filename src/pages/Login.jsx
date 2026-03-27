@@ -24,10 +24,20 @@ const Login = () => {
         usuario,
         password,
       });
+
       localStorage.setItem("token", response.data.token);
+      localStorage.setItem(
+        "username",
+        response.data.user?.nombre || response.data.user?.usuario || usuario
+      );
+
+      if (response.data.user?.institucionId) {
+        localStorage.setItem("institucionId", String(response.data.user.institucionId));
+      }
+
       navigate("/dashboard");
-    } catch (err) {
-      setError("Error de autenticación. Por favor, verifica tus credenciales.");
+    } catch {
+      setError("Error de autenticacion. Por favor, verifica tus credenciales.");
     }
   };
 
@@ -42,16 +52,9 @@ const Login = () => {
             alignItems: "center",
           }}
         >
-          <Paper
-            elevation={4}
-            sx={{ mt: 8, p: 4 }}
-          >
-            <Typography
-              variant="h5"
-              align="center"
-              gutterBottom
-            >
-              Iniciar Sesión
+          <Paper elevation={4} sx={{ mt: 8, p: 4 }}>
+            <Typography variant="h5" align="center" gutterBottom>
+              Iniciar Sesion
             </Typography>
 
             <TextField
@@ -63,7 +66,7 @@ const Login = () => {
             />
 
             <TextField
-              label="Contraseña"
+              label="Contrasena"
               type="password"
               fullWidth
               margin="normal"
@@ -76,18 +79,14 @@ const Login = () => {
               variant="contained"
               fullWidth
               sx={{ mt: 2 }}
-              onClick={handleSubmit }
-
+              onClick={handleSubmit}
             >
               Entrar
             </Button>
           </Paper>
         </Box>
         {error && (
-          <Alert
-            severity="error"
-            sx={{ mt: 2 }}
-          >
+          <Alert severity="error" sx={{ mt: 2 }}>
             {error}
           </Alert>
         )}
